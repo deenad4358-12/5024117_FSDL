@@ -1,0 +1,17 @@
+/* First letter pseudo-element */
+p::first-letter {
+    font-size: 30px;
+    color: red;
+    font-weight: bold;
+}
+
+/* First line pseudo-element */
+p::first-line {
+    color: blue;
+}
+
+/* Selection pseudo-element */
+p::selection {
+    background-color: yellow;
+    color: black;
+}

@@ -1,0 +1,51 @@
+body {
+    font-family: "Times New Roman", serif;
+    background-color: #f8f8f8;
+}
+
+/* Center the table on the page */
+table {
+    border: 2px solid black;
+    border-collapse: collapse;
+    width: 450px;
+    margin: 40px auto;
+    background-color: #ffffff;
+}
+
+/* Common cell styling */
+th, td {
+    border: 1px solid black;
+    padding: 8px;
+    font-size: 14px;
+}
+
+/* College name */
+.title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+}
+
+/* Centered text rows */
+.center {
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Header row for subject/date/timing */
+tr:nth-child(7) th {
+    background-color: #eaeaea;
+    text-align: center;
+}
+
+/* Subject column emphasis */
+td:first-child {
+    font-weight: bold;
+}
+
+/* Date & timing center alignment */
+td:nth-child(2),
+td:nth-child(3) {
+    text-align: center;
+}

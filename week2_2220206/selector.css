@@ -1,0 +1,51 @@
+/* 1. Universal Selector */
+* {
+    font-family: Arial, sans-serif;
+}
+
+/* 2. Element Selector */
+h1 {
+    color: darkblue;
+    text-align: center;
+}
+
+/* 3. Class Selector */
+.fruit {
+    color: green;
+}
+
+/* 4. ID Selector */
+#special {
+    color: red;
+    font-weight: bold;
+}
+
+/* 5. Group Selector */
+h2, p {
+    color: brown;
+}
+
+/* 6. Descendant Selector */
+div p {
+    background-color: lightyellow;
+}
+
+/* 7. Child Selector */
+ul > li {
+    list-style-type: square;
+}
+
+/* 8. Attribute Selector */
+input[type="text"] {
+    border: 2px solid blue;
+}
+
+/* 9. Adjacent Sibling Selector */
+h2 + p {
+    font-style: italic;
+}
+
+/* 10. General Sibling Selector */
+h2 ~ p {
+    font-size: 16px;
+}

@@ -1,0 +1,45 @@
+/* Apply same font to entire page */
+body {
+    font-family: 'Arial', 'Helvetica', sans-serif;
+    font-size: 20px;
+    line-height: 1.6;
+}
+
+/* Optional: small visual tweaks so tags are easy to see */
+b, strong {
+    color: #2c3e50;
+}
+
+i, em {
+    font-style: italic;
+    color: #34495e;
+}
+
+u {
+    text-decoration: underline;
+}
+
+mark {
+    background-color: yellow;
+    padding: 2px 4px;
+}
+
+small {
+    font-size: 14px;
+}
+
+big {
+    font-size: 26px;
+}
+
+del {
+    color: red;
+}
+
+sub {
+    font-size: 12px;
+}
+
+sup {
+    font-size: 12px;
+}

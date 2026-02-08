@@ -1,0 +1,46 @@
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    margin: 40px;
+    background-color: #f9f9f9;
+}
+
+/* Main heading */
+h1 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 30px;
+}
+
+/* Sub headings */
+h2 {
+    color: #34495e;
+    margin-top: 25px;
+}
+
+/* Unordered list styling */
+ul {
+    list-style-type: square;
+    background-color: #ffffff;
+    padding: 15px 30px;
+    border-radius: 6px;
+    width: 300px;
+}
+
+/* Ordered list styling */
+ol {
+    list-style-type: decimal;
+    background-color: #ffffff;
+    padding: 15px 30px;
+    border-radius: 6px;
+    width: 300px;
+}
+
+/* List items */
+li {
+    padding: 6px 0;
+    font-size: 18px;
+}
+ul, ol {
+    margin-left: auto;
+    margin-right: auto;
+}

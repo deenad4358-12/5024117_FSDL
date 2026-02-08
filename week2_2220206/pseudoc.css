@@ -1,0 +1,15 @@
+body:hover {
+    background-color: lightyellow;
+}
+
+p:hover {
+    color: red;
+}
+
+a:visited {
+    color: purple;
+}
+
+a:active {
+    color: green;
+}

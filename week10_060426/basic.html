@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html ng-app="studentApp">
+<head>
+    <title>Student Dashboard</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+
+<body style="font-family: Arial; margin:0; background:#ffffff;">
+
+<div ng-controller="studentController"
+     style="width:800px; margin:30px auto; padding:25px;
+            background:rgb(211, 126, 126); border-radius:15px;
+            box-shadow:0 10px 25px rgba(0,0,0,0.3);">
+
+    <h2 style="text-align:center;">🎓 Student Marks Record</h2>
+
+    <form name="studentForm" ng-submit="saveStudent()" novalidate>
+
+        <!-- Roll No -->
+        <input type="text" ng-model="student.roll"
+               placeholder="Roll Number" required
+               style="width:100%; padding:10px; margin:5px 0; border-radius:5px;">
+
+        <!-- Name -->
+        <input type="text" ng-model="student.name"
+               placeholder="Name" required
+               style="width:100%; padding:10px; margin:5px 0; border-radius:5px;">
+
+        <!-- Branch -->
+        <select ng-model="student.branch"
+                style="width:100%; padding:10px; margin:5px 0; border-radius:5px;">
+            <option value="">Select Branch</option>
+            <option>CSE</option>
+            <option>IT</option>
+            <option>EXTC</option>
+            <option>Mechanical</option>
+        </select>
+
+        <!-- SUBJECT TABS -->
+        <div style="margin-top:10px;">
+            <button type="button" ng-click="activeTab='math'" style="padding:5px;">Math</button>
+            <button type="button" ng-click="activeTab='science'" style="padding:5px;">Science</button>
+            <button type="button" ng-click="activeTab='english'" style="padding:5px;">English</button>
+        </div>
+
+        <!-- TAB CONTENT -->
+        <div ng-show="activeTab=='math'">
+            <input type="number" ng-model="student.marks.math"
+                   placeholder="Math Marks"
+                   style="width:100%; padding:10px; margin:5px 0;">
+        </div>
+
+        <div ng-show="activeTab=='science'">
+            <input type="number" ng-model="student.marks.science"
+                   placeholder="Science Marks"
+                   style="width:100%; padding:10px; margin:5px 0;">
+        </div>
+
+        <div ng-show="activeTab=='english'">
+            <input type="number" ng-model="student.marks.english"
+                   placeholder="English Marks"
+                   style="width:100%; padding:10px; margin:5px 0;">
+        </div>
+
+        <br>
+
+        <!-- Average -->
+        <p><b>Average Marks:</b> {{ getAverage(student.marks) }}</p>
+
+        <button type="submit"
+                style="background:green; color:white; padding:10px; border:none;">
+            {{ editMode ? 'Update' : 'Add Student' }}
+        </button>
+
+    </form>
+
+    <hr>
+
+    <!-- TABLE -->
+    <table width="100%" border="1" style="text-align:center;">
+        <tr>
+            <th>Roll</th>
+            <th>Name</th>
+            <th>Branch</th>
+            <th>Math</th>
+            <th>Science</th>
+            <th>English</th>
+            <th>Average</th>
+            <th>Grade</th>
+        </tr>
+
+        <tr ng-repeat="s in students">
+            <td>{{ s.roll }}</td>
+            <td>{{ s.name }}</td>
+            <td>{{ s.branch }}</td>
+            <td>{{ s.marks.math }}</td>
+            <td>{{ s.marks.science }}</td>
+            <td>{{ s.marks.english }}</td>
+            <td>{{ getAverage(s.marks) }}</td>
+            <td>{{ getGrade(getAverage(s.marks)) }}</td>
+        </tr>
+    </table>
+
+</div>
+
+<script>
+var app = angular.module("studentApp", []);
+
+app.controller("studentController", function($scope) {
+
+    $scope.students = [];
+    $scope.student = { marks: {} };
+    $scope.activeTab = 'math';
+
+    $scope.saveStudent = function() {
+        $scope.students.push(angular.copy($scope.student));
+        $scope.student = { marks: {} };
+    };
+
+    // Average calculation
+    $scope.getAverage = function(marks) {
+        if (!marks) return 0;
+        let total = (Number(marks.math)||0) +
+                    (Number(marks.science)||0) +
+                    (Number(marks.english)||0);
+        return (total/3).toFixed(2);
+    };
+
+    // Grade logic
+    $scope.getGrade = function(avg) {
+        if (avg >= 80) return "A";
+        if (avg >= 60) return "B";
+        if (avg >= 40) return "C";
+        return "F";
+    };
+
+});
+</script>
+
+</body>
+</html>

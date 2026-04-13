@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <title>AngularJS Hello World</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+
+<body style="font-family: Arial, sans-serif; background: linear-gradient(to right, #eef2f3, #dfe9f3); margin: 0; padding: 0;">
+
+    <div ng-controller="myController" 
+         style="width: 360px; margin: 100px auto; padding: 25px; 
+                background-color: rgb(164, 204, 180); border-radius: 12px; 
+                box-shadow: 0 6px 15px rgba(0,0,0,0.15); text-align: center;">
+
+        <h1 style="color: #b44848; margin-bottom: 20px;">The World 🌍</h1>
+
+        <label style="font-size: 16px; color: #da4bc2;">Enter your name:</label><br><br>
+
+        <input type="text" ng-model="name"
+               style="width: 90%; padding: 10px; border: 1px solid #ccc; 
+                      border-radius: 5px; font-size: 14px; outline: none;"
+               placeholder="Type something...">
+
+        <br><br>
+
+        <h2 style="color: #4187d1;">
+            {{ getEmoji() }} Hello, {{ name }}!
+        </h2>
+
+        <p style="color: #444; font-size: 14px;">
+            Characters: {{ name.length }}
+        </p>
+
+        <p style="font-weight: bold;" ng-style="{'color': name.length > 5 ? 'green' : 'red'}">
+            {{ name.length > 5 ? 'Nice name!' : 'Try a longer name 😄' }}
+        </p>
+
+        <!-- Buttons -->
+        <button ng-click="clearName()"
+                style="margin-top: 10px; padding: 8px 15px; 
+                       border: none; border-radius: 5px; 
+                       background-color: #ff0000; color: white; 
+                       cursor: pointer;">
+            Clear
+        </button>
+
+        <br><br>
+
+        <!-- NEW NAVIGATION BUTTON -->
+        <button ng-click="goToPage()"
+                style="padding: 8px 15px; 
+                       border: none; border-radius: 5px; 
+                       background-color: #007BFF; color: white; 
+                       cursor: pointer;">
+            Go to Next Page →
+        </button>
+
+    </div>
+
+    <script>
+        var app = angular.module("myApp", []);
+
+        app.controller("myController", function($scope, $window) {
+            $scope.name = "Guest";
+
+            $scope.clearName = function() {
+                $scope.name = "";
+            };
+
+            $scope.getEmoji = function() {
+                if (!$scope.name) return "👋";
+                if ($scope.name.length < 4) return "🙂";
+                if ($scope.name.length < 8) return "😊";
+                return "😎";
+            };
+
+            // Navigation function
+            $scope.goToPage = function() {
+                $window.location.href = "page2.html";
+            };
+        });
+    </script>
+
+</body>
+</html>

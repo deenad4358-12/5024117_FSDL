@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <title>Second Page</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+
+<body style="font-family: Arial, sans-serif; background: linear-gradient(to right, #dfe9f3, #ffffff); margin: 0; padding: 0;">
+
+    <div ng-controller="pageController"
+         style="width: 420px; margin: 80px auto; padding: 25px;
+                background-color: #ffffff; border-radius: 12px;
+                box-shadow: 0 6px 15px rgba(0,0,0,0.15); text-align: center;">
+
+        <h1 style="color: #ad4bd3;">Welcome to Page 2 🎉</h1>
+
+        <p style="color: #555;">You successfully navigated!</p>
+
+        <!-- Date -->
+        <p style="font-weight: bold; color: #333;">
+            📅 {{ currentDate }}
+        </p>
+
+        <hr style="margin: 15px 0;">
+
+        <!-- Add Task -->
+        <h3 style="color: #1e65b1;">📝 Task Manager</h3>
+
+        <input type="text" ng-model="task"
+               placeholder="Enter a task"
+               style="width: 80%; padding: 8px; border: 1px solid #ccc; border-radius: 5px;">
+
+        <br><br>
+
+        <button ng-click="addTask()"
+                style="padding: 6px 12px; border: none; border-radius: 5px;
+                       background-color: #ad2c2c; color: white; cursor: pointer;">
+            Add Task
+        </button>
+
+        <!-- Pending Tasks -->
+        <h4 style="margin-top: 20px; color: #333;">Pending Tasks</h4>
+
+        <ul style="list-style: none; padding: 0;">
+            <li ng-repeat="t in tasks | filter:{completed:false}"
+                style="padding: 5px; border-bottom: 1px solid #ddd; text-align: left;">
+
+                <input type="checkbox" ng-model="t.completed">
+
+                <span style="margin-left: 8px;">
+                    {{ t.name }}
+                </span>
+            </li>
+        </ul>
+
+        <!-- Completed Tasks -->
+        <h4 style="margin-top: 20px; color: green;">✔ Completed Tasks</h4>
+
+        <ul style="list-style: none; padding: 0;">
+            <li ng-repeat="t in tasks | filter:{completed:true}"
+                style="padding: 5px; border-bottom: 1px solid #ddd; text-align: left; color: gray; text-decoration: line-through;">
+
+                ✔ {{ t.name }}
+            </li>
+        </ul>
+
+        <br>
+
+        <!-- Back Button -->
+        <a href="index.html">
+            <button style="padding: 10px 15px; border: none; border-radius: 5px;
+                           background-color: #3ba39b; color: white; cursor: pointer;">
+                ⬅ Go Back
+            </button>
+        </a>
+
+    </div>
+
+    <script>
+        var app = angular.module("myApp", []);
+
+        app.controller("pageController", function($scope) {
+
+            $scope.currentDate = new Date().toLocaleString();
+
+            // Store tasks as objects
+            $scope.tasks = [];
+
+            $scope.addTask = function() {
+                if ($scope.task) {
+                    $scope.tasks.push({
+                        name: $scope.task,
+                        completed: false
+                    });
+                    $scope.task = "";
+                }
+            };
+        });
+    </script>
+
+</body>
+</html>
